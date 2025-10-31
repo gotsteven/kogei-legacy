@@ -9,5 +9,8 @@ public class SceneTransitionManager : MonoBehaviour
         {
             SceneManager.LoadScene(sceneName);
         }
-    }
+        else
+        {
+            Debug.LogWarning("SceneTransitionManager.LoadScene called with a null or empty sceneName.");
+        }
 }
