@@ -7,10 +7,15 @@ public class PlayerInteractive : MonoBehaviour
 
     private List<ResourceNode> reachableResources = new List<ResourceNode>();
 
+    [Tooltip("採集のクールダウン時間（秒）")]
+    public float collectInterval = 0.5f;
+    private float nextCollectTime = 0f;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKey(KeyCode.F) && Time.time >= nextCollectTime)
         {
+            nextCollectTime = Time.time + collectInterval;
+            
             TryCollectResource();
         }
     }
