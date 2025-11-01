@@ -16,10 +16,10 @@ EditorBuildSettings:
     guid: d7fe85bd41c31464a9c3ebc604d24303
   - enabled: 1
     path: Assets/Project/Scenes/Collect_material.unity
-    guid: b2e0fd9c7ad8c094b90cda279bcbb66f
+    guid: 740fc22a1173be743b734c8998793a4e
   - enabled: 1
     path: Assets/Project/Scenes/Level1_Village.unity
-    guid: 014e16110b6be4d4b9e6c848a4804e8b
+    guid: e43f1c8e7682f0f4d8e77709df5ed4ea
   - enabled: 1
     path: Assets/Project/Scenes/PotteryGame.unity
     guid: a45f048f1dbb41b488c596e254596c04
