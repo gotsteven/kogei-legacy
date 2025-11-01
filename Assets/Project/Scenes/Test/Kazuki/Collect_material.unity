@@ -4061,7 +4061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneName: Level1_Village
-  exitDirection: Right
+  exitDirection: 1
 --- !u!61 &1152522893
 BoxCollider2D:
   m_ObjectHideFlags: 0
