@@ -269,6 +269,11 @@ PrefabInstance:
       value: Level1_Village_Prefab
       objectReference: {fileID: 0}
     - target: {fileID: 1797906354037944958, guid: 0cceff53efc9afd46b90abc175ab8a4c, type: 3}
+    - target: {fileID: 1748714916619671985, guid: c9d941f08fba96442bb05c9546b1d380, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879410940906902177, guid: c9d941f08fba96442bb05c9546b1d380, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
