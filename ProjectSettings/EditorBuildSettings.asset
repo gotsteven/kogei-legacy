@@ -11,6 +11,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Project/Scenes/Level1_Village.unity
     guid: 014e16110b6be4d4b9e6c848a4804e8b
+  - enabled: 1
+    path: Assets/Project/Scenes/Workshop.unity
+    guid: 193762db19647d1428422687215a3b24
+  - enabled: 1
+    path: Assets/Project/Scenes/Workshop_Bedroom.unity
+    guid: d7fe85bd41c31464a9c3ebc604d24303
+  - enabled: 1
+    path: Assets/Project/Scenes/Collect_material.unity
+    guid: b2e0fd9c7ad8c094b90cda279bcbb66f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
