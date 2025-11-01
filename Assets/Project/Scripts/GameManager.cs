@@ -9,7 +9,10 @@ public class GameManager : MonoBehaviour
     public List<Kiln> kilns = new List<Kiln>();
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI averagePowerText;
-    public TextMeshProUGUI countdownText; // カウントダウン用テキスト
+    public TextMeshProUGUI countdownText;
+
+    [Header("Instruction Panel")]
+    public GameObject instructionPanel; // 説明パネル
 
     [Header("Result Panel")]
     public GameObject resultPanel;
@@ -17,29 +20,54 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
 
     [Header("Settings")]
-    public float countdownDuration = 3f; // カウントダウン秒数
+    public float countdownDuration = 3f;
     public float gameDuration = 20f;
     public float targetPower = 50f;
 
     private float remainingTime;
     private bool isGameActive = false;
-    public bool IsGameActive => isGameActive; // 他のスクリプトから参照できるようにする
+    public bool IsGameActive => isGameActive;
 
     void Start()
     {
-        // 結果パネルを非表示に設定（念のため）
+        // 結果パネルを非表示
         if (resultPanel != null)
         {
             resultPanel.SetActive(false);
         }
 
-        // カウントダウンから開始
+        // カウントダウンテキストを非表示
+        if (countdownText != null)
+        {
+            countdownText.gameObject.SetActive(false);
+        }
+
+        // 説明パネルを表示
+        if (instructionPanel != null)
+        {
+            instructionPanel.SetActive(true);
+        }
+
+        // ゲームはまだ開始していない
+        isGameActive = false;
+    }
+
+    // StartButtonから呼ばれる
+    public void OnStartButtonClicked()
+    {
+        // 説明パネルを非表示
+        if (instructionPanel != null)
+        {
+            instructionPanel.SetActive(false);
+        }
+
+        // カウントダウン開始
         StartCoroutine(StartCountdown());
     }
 
     IEnumerator StartCountdown()
     {
-        isGameActive = false; // ゲームはまだ開始していない
+        isGameActive = false;
 
         // カウントダウンテキストを表示
         if (countdownText != null)
