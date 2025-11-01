@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/TItle.unity
     guid: 6fbac9e87b6763e409fc02a3c87b0b9b
   - enabled: 1
-    path: Assets/Project/Scenes/Level1_Village.unity
-    guid: 014e16110b6be4d4b9e6c848a4804e8b
-  - enabled: 1
     path: Assets/Project/Scenes/Workshop.unity
     guid: 193762db19647d1428422687215a3b24
   - enabled: 1
@@ -20,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Project/Scenes/Collect_material.unity
     guid: b2e0fd9c7ad8c094b90cda279bcbb66f
+  - enabled: 1
+    path: Assets/Project/Scenes/Level1_Village.unity
+    guid: 014e16110b6be4d4b9e6c848a4804e8b
   - enabled: 1
     path: Assets/Project/Scenes/PotteryGame.unity
     guid: a45f048f1dbb41b488c596e254596c04
