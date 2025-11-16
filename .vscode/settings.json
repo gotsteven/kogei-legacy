@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "KOGEI-LEGACY.sln"
+    "dotnet.defaultSolution": "kogei-legacy.sln"
 }

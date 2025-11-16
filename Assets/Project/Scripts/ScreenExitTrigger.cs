@@ -20,6 +20,8 @@ public class ScreenExitTrigger : MonoBehaviour
         {
             // どの方向から出たかを記録
             GameData.lastExitDirection = exitDirection.ToString();
+            
+            GameData.isSceneTransitioning = true;
 
             // シーン遷移
             SceneManager.LoadScene(targetSceneName);

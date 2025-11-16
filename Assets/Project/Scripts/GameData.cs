@@ -7,4 +7,5 @@ public static class GameData
     public static string completedCraftName = "";
     // シーン遷移用
     public static string lastExitDirection = "";
+    public static bool isSceneTransitioning = false;
 }
