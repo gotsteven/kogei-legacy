@@ -1,37 +1,19 @@
 using UnityEngine;
-using System.Collections; // ★★★ この行を追加 ★★★
 
 public class PlayerSpawner : MonoBehaviour
 {
+    // playerPrefabは不要になるので削除
     [SerializeField] private Transform spawnPoint_Left;
     [SerializeField] private Transform spawnPoint_Right;
     [SerializeField] private Transform spawnPoint_Top;
     [SerializeField] private Transform spawnPoint_Bottom;
 
-    // Awake() ではプレイヤーの移動のみを行います
-    void Awake()
-    {
-        MovePlayer();
-        Debug.Log("PlayerSpawner: Awake() がMovePlayerを実行");
-    }
 
-    // Start() ではコルーチンを開始するだけにします
+
     void Start()
     {
-        // ★★★ このメソッドを開始するように変更 ★★★
-        StartCoroutine(ResetSceneTransitionFlag());
-    }
-
-    // ★★★ このメソッドを新しく追加 ★★★
-    IEnumerator ResetSceneTransitionFlag()
-    {
-        // 全てのUpdate()とLateUpdate()が終わった
-        // このフレームの最後のタイミングまで待つ
-        yield return new WaitForEndOfFrame(); 
-
-        // 次のフレームが始まる前にフラグをリセット
         GameData.isSceneTransitioning = false;
-        Debug.Log("PlayerSpawner: 1フレーム描画後にフラグをリセット");
+        MovePlayer();
     }
 
     void MovePlayer()
@@ -67,17 +49,10 @@ public class PlayerSpawner : MonoBehaviour
                 break;
         }
 
-        if (spawnPos == null)
-        {
-             // デフォルトのスポーン位置
-             spawnPos = spawnPoint_Right; 
-        }
-        
         if (spawnPos != null)
         {
             // プレイヤーの位置を変更
             player.transform.position = spawnPos.position;
-            
         }
     }
 }
