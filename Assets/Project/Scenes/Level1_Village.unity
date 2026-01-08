@@ -2345,6 +2345,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3016187934527726210, guid: c2a68959300e32f4caceb83e5f23f402, type: 3}
+      propertyPath: meleeKey
+      value: 102
+      objectReference: {fileID: 0}
     - target: {fileID: 5230306948048977582, guid: c2a68959300e32f4caceb83e5f23f402, type: 3}
       propertyPath: m_LocalPosition.x
       value: -57.8
