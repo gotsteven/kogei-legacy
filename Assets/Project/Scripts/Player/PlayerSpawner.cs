@@ -1,12 +1,11 @@
 using UnityEngine;
+using Cainos.CustomizablePixelCharacter;
 
 public class PlayerSpawner : MonoBehaviour
 {
-    // playerPrefabは不要になるので削除
     [SerializeField] private Transform spawnPoint_Left;
     [SerializeField] private Transform spawnPoint_Right;
-    [SerializeField] private Transform spawnPoint_Top;
-    [SerializeField] private Transform spawnPoint_Bottom;
+    [SerializeField] private Transform spawnPoint_Workshop;
 
     void Start()
     {
@@ -15,7 +14,6 @@ public class PlayerSpawner : MonoBehaviour
 
     void MovePlayer()
     {
-        // 既存のプレイヤーを探す
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         if (player == null)
@@ -24,25 +22,32 @@ public class PlayerSpawner : MonoBehaviour
             return;
         }
 
+        PixelCharacter character = player.GetComponent<PixelCharacter>();
+
         Transform spawnPos = null;
 
-        // 来た方向に応じてスポーン位置を決める
+        PixelCharacter.FacingType targetFacing = PixelCharacter.FacingType.Right;
+
+        // スポーン位置を決める
         switch (GameData.lastExitDirection)
         {
             case "Left":
                 spawnPos = spawnPoint_Right;
+                targetFacing = PixelCharacter.FacingType.Left;
                 break;
+
             case "Right":
                 spawnPos = spawnPoint_Left;
+                targetFacing = PixelCharacter.FacingType.Right;
                 break;
-            case "Top":
-                spawnPos = spawnPoint_Bottom;
+            case "Workshop":
+                spawnPos = spawnPoint_Workshop;
+                targetFacing = PixelCharacter.FacingType.Left;
                 break;
-            case "Bottom":
-                spawnPos = spawnPoint_Top;
-                break;
+
             default:
                 spawnPos = spawnPoint_Left;
+                targetFacing = PixelCharacter.FacingType.Right;
                 break;
         }
 
@@ -50,6 +55,11 @@ public class PlayerSpawner : MonoBehaviour
         {
             // プレイヤーの位置を変更
             player.transform.position = spawnPos.position;
+
+            if (character != null)
+            {
+                character.Facing = targetFacing;
+            }
         }
     }
 }

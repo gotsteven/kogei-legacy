@@ -738,7 +738,7 @@ Transform:
   m_GameObject: {fileID: 165603714}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -5.2, z: -10}
+  m_LocalPosition: {x: -57.8, y: -5.2000003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1492,6 +1492,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 758453219}
+  - {fileID: 1212182461}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &600505843
@@ -2342,11 +2343,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1546294774153461753, guid: c2a68959300e32f4caceb83e5f23f402, type: 3}
       propertyPath: m_Name
-      value: PF Pixel Character - Traveller
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5230306948048977582, guid: c2a68959300e32f4caceb83e5f23f402, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -57.8
       objectReference: {fileID: 0}
     - target: {fileID: 5230306948048977582, guid: c2a68959300e32f4caceb83e5f23f402, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2385,15 +2386,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 4501733915030799630, guid: c2a68959300e32f4caceb83e5f23f402, type: 3}
-    - {fileID: 5587930124474788462, guid: c2a68959300e32f4caceb83e5f23f402, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 6899037027154262524, guid: c2a68959300e32f4caceb83e5f23f402, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8902462940501378918, guid: c2a68959300e32f4caceb83e5f23f402, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1546294774153461753, guid: c2a68959300e32f4caceb83e5f23f402, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1069858341}
+    - targetCorrespondingSourceObject: {fileID: 1546294774153461753, guid: c2a68959300e32f4caceb83e5f23f402, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1069858351}
   m_SourcePrefab: {fileID: 100100000, guid: c2a68959300e32f4caceb83e5f23f402, type: 3}
 --- !u!4 &885835682 stripped
 Transform:
@@ -2899,6 +2904,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5230306948048977582, guid: c2a68959300e32f4caceb83e5f23f402, type: 3}
   m_PrefabInstance: {fileID: 878500530}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1069858351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069858340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf2b608cb0493c41a5aa8157a8eb2aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint_Left: {fileID: 0}
+  spawnPoint_Right: {fileID: 0}
+  spawnPoint_Workshop: {fileID: 1212182461}
 --- !u!1 &1082969533
 GameObject:
   m_ObjectHideFlags: 0
@@ -3336,6 +3356,37 @@ PolygonCollider2D:
       - {x: 0.26891547, y: 0.6268871}
       - {x: 0.1267168, y: 0.7850575}
   m_UseDelaunayMesh: 0
+--- !u!1 &1212182460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1212182461}
+  m_Layer: 0
+  m_Name: SpawnPoint_Workshop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1212182461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212182460}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 19, y: -10, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 580327166}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1234383670
 GameObject:
   m_ObjectHideFlags: 0
@@ -3917,7 +3968,7 @@ Transform:
   m_GameObject: {fileID: 1434767771}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -5.2, z: -10}
+  m_LocalPosition: {x: -57.8, y: -5.2000003, z: -10}
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30450,7 +30501,7 @@ GameObject:
   - component: {fileID: 4558154415473703080}
   - component: {fileID: 3298874862467196885}
   m_Layer: 0
-  m_Name: PF House 08
+  m_Name: Workshop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
