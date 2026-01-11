@@ -1,9 +1,9 @@
 using UnityEngine;
-using System.Collections.Generic; 
+using System.Collections.Generic;
 
 public class PlayerInteractive : MonoBehaviour
 {
-    public Inventory inventory; 
+    public Inventory inventory;
 
     private List<ResourceNode> reachableResources = new List<ResourceNode>();
 
@@ -15,7 +15,7 @@ public class PlayerInteractive : MonoBehaviour
         if (Input.GetKey(KeyCode.F) && Time.time >= nextCollectTime)
         {
             nextCollectTime = Time.time + collectInterval;
-            
+
             TryCollectResource();
         }
     }
@@ -24,11 +24,11 @@ public class PlayerInteractive : MonoBehaviour
     {
         if (reachableResources.Count > 0)
         {
-            ResourceNode resource = reachableResources[0]; 
+            ResourceNode resource = reachableResources[0];
 
             if (resource == null)
             {
-                reachableResources.RemoveAt(0); 
+                reachableResources.RemoveAt(0);
                 return;
             }
 
@@ -54,7 +54,7 @@ public class PlayerInteractive : MonoBehaviour
 
         if (resource != null)
         {
-            if (!reachableResources.Contains(resource)) 
+            if (!reachableResources.Contains(resource))
             {
                 reachableResources.Add(resource);
                 Debug.Log($"採集可能範囲に入った: {resource.gameObject.name}");
