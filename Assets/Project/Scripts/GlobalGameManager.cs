@@ -6,17 +6,17 @@ using System.Collections;
 
 public class GlobalGameManager : MonoBehaviour
 {
-    public static GlobalGameManager Instance; // どこからでも呼べる
+    public static GlobalGameManager Instance;
 
     [Header("ステータス")]
-    public int currentDay = 1; // 現在の日にち
-    public string lastNightLog = ""; // 昨晩のログ
-    public bool isMorning = false; // 朝かどうかのフラグ
+    public int currentDay = 1;
+    public string lastNightLog = "";
+    public bool isMorning = false;
 
     [Header("オーディオ")]
     public AudioSource audioSource;
-    public AudioClip snoreSound; // いびき
-    public AudioClip breakSound; // ガラスが割れる音
+    public AudioClip snoreSound;
+    public AudioClip breakSound;
 
     private void Awake()
     {
@@ -31,18 +31,60 @@ public class GlobalGameManager : MonoBehaviour
         }
     }
 
-    //「はい」ボタンから呼ばれる関数
-    public void StartSleepSequence()
+    public void StartSleepSequence(GameObject sleepPanel, TextMeshProUGUI dayText)
     {
-        StartCoroutine(SleepCoroutine());
+        StartCoroutine(SleepCoroutine(sleepPanel, dayText));
     }
 
-    private IEnumerator SleepCoroutine()
+    private IEnumerator SleepCoroutine(GameObject sleepPanel, TextMeshProUGUI dayText)
     {
-        Debug.Log("画面暗転...");
+        Debug.Log("盗難システムを開始します");
 
         currentDay++;
         Debug.Log("Day " + currentDay);
+
+        Image panelImage = null;
+
+        if (sleepPanel != null)
+        {
+            sleepPanel.SetActive(true);
+            panelImage = sleepPanel.GetComponent<Image>();
+
+            if (panelImage != null)
+            {
+                panelImage.color = new Color(0, 0, 0, 0);
+            }
+        }
+
+        if (dayText != null)
+        {
+            dayText.text = "Day " + currentDay;
+            dayText.gameObject.SetActive(false);
+        }
+
+        float fadeDuration = 1.0f;
+        float timer = 0f;
+
+        while (timer < fadeDuration)　// 暗転演出
+        {
+            timer += Time.deltaTime;
+            float alpha = Mathf.Clamp01(timer / fadeDuration);
+
+            if (panelImage != null)
+            {
+                panelImage.color = new Color(0, 0, 0, alpha);
+            }
+            yield return null;
+        }
+
+        if (panelImage != null) panelImage.color = Color.black;
+
+        if (dayText != null)
+        {
+            dayText.gameObject.SetActive(true); // テキスト表示
+        }
+
+        yield return new WaitForSeconds(0.5f);
 
         bool isTheft = Random.value > 0.5f;
 
@@ -60,22 +102,23 @@ public class GlobalGameManager : MonoBehaviour
         yield return new WaitForSeconds(4.0f);
 
         isMorning = true;
+        GameData.lastExitDirection = "Workshop";
         SceneManager.LoadScene("Level1_Village");
     }
 
-    // シーン読み込み完了時
     public void OnVillageLoaded(GameObject player, GameObject panel, TextMeshProUGUI logText)
     {
         if (!isMorning) return;
 
-        GameObject spawnPoint = GameObject.Find("WorkshopSpawnPoint");
-        if (spawnPoint != null)
+        if (panel != null)
         {
-            player.transform.position = spawnPoint.transform.position;
+            panel.SetActive(true);
         }
 
-        panel.SetActive(true);
-        logText.text = $"【 {currentDay}日目 】\n\n{lastNightLog}";
+        if (logText != null)
+        {
+            logText.text = $"【 {currentDay}日目 】\n\n{lastNightLog}";
+        }
 
         isMorning = false;
     }
