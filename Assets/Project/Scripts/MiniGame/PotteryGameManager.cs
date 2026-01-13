@@ -110,7 +110,7 @@ public class PotteryGameManager : MonoBehaviour
         // "スタート!" 表示
         if (countdownText != null)
         {
-            countdownText.text = "スタート！";
+            countdownText.text = "Start!!";
         }
         yield return new WaitForSeconds(0.5f);
         
@@ -186,7 +186,7 @@ public class PotteryGameManager : MonoBehaviour
     {
         if (timerText != null)
         {
-            timerText.text = $"残り時間: {Mathf.CeilToInt(remainingTime)}秒";
+            timerText.text = $"残り時間 : {Mathf.CeilToInt(remainingTime)}秒";
         }
     }
 
@@ -213,13 +213,13 @@ public class PotteryGameManager : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.gameObject.SetActive(true);
-            scoreText.text = $"スコア: {score:F1}点";
+            scoreText.text = $"スコア : {score:F1}点";
         }
         
         if (resultPanel != null)
             resultPanel.SetActive(true);
         
-        Debug.Log($"ゲーム終了！スコア: {score}");
+        Debug.Log($"終了！スコア : {score}");
     }
 
     float CalculateScore()
