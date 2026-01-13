@@ -37,7 +37,7 @@ public class PotteryDeformer : MonoBehaviour
             if (hit.collider.gameObject == gameObject)
             {
                 // ヒット位置のY座標から高さセグメントを計算
-                float localY = hit.point.y;
+                float localY = transform.InverseTransformPoint(hit.point).y;
                 int heightIndex = Mathf.RoundToInt(localY / pottery.GetHeight() * pottery.GetHeightSegmentCount());
 
                 // 範囲制限
