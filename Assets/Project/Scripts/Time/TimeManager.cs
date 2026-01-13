@@ -2,27 +2,36 @@
 
 public class TimeManager : MonoBehaviour
 {
-    public static TimeManager Instance;
+    public static TimeManager Instance { get; private set; }
 
     [Header("時間設定")]
-    [Tooltip("ゲーム内の1日(秒計算)")]
-    public float dayDurationInSeconds = 900f;
+    [Tooltip("1日の長さ（秒）")]
+    public float dayDuration = 900f;
 
-    [Header("開始時間")]
-    [Tooltip("ゲーム開始時の時間（0.0=深夜0時, 0.25=朝6時, 0.5=正午）")]
-    [Range(0f, 1f)]
-    public float startTime = 0.25f; // デフォルトは朝6時から
+    [Header("停止設定")]
+    [Tooltip("何時になったら時間を止めるか（24時間表記）")]
+    public float stopHour = 20f;
 
-    [Header("現在の状態（確認用）")]
-    [Range(0f, 1f)]
-    public float normalizedTime = 0f; // 0.0 〜 1.0 で時間を表す
+    [Header("状態")]
+    public float currentTime = 0f;
+    public bool isTimeStopped = false;
+
+    // 0.0(0:00) 〜 1.0(24:00)
+    public float normalizedTime
+    {
+        get
+        {
+            if (dayDuration <= 0) return 0f;
+            return currentTime / dayDuration;
+        }
+    }
 
     private void Awake()
     {
-        // シングルトン化（どこからでもアクセスできるようにする）
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -30,25 +39,27 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        normalizedTime = startTime;
-    }
-
     private void Update()
     {
-        normalizedTime += Time.deltaTime / dayDurationInSeconds;
+        if (isTimeStopped) return;
 
-        // 1.0（深夜24時）を超えたら 0.0（深夜0時）に戻す
-        if (normalizedTime >= 1f)
+        currentTime += Time.deltaTime;
+
+        // 指定時間（stopHour）で停止
+        float stopTimePoint = dayDuration * (stopHour / 24f);
+
+        if (currentTime >= stopTimePoint)
         {
-            normalizedTime = 0f;
+            currentTime = stopTimePoint;
+            isTimeStopped = true;
+            Debug.Log($"【TimeManager】現在 {stopHour}時 です。時間が止まりました。");
         }
     }
 
-    // 外部から時間を聞くための関数（0〜24時で返す）
-    public float GetCurrentHour()
+    public void Sleep()
     {
-        return normalizedTime * 24f;
+        currentTime = 0f;
+        isTimeStopped = false;
+        Debug.Log("【TimeManager】起床！新しい一日が始まりました。");
     }
 }

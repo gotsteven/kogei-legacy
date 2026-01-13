@@ -1882,6 +1882,7 @@ Transform:
   m_Children:
   - {fileID: 758453219}
   - {fileID: 1212182461}
+  - {fileID: 1188228594}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &600505843
@@ -3180,7 +3181,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2035436244}
-  - {fileID: 1188228594}
   - {fileID: 1292189770}
   - {fileID: 1786131408}
   - {fileID: 2124114151}
@@ -3197,7 +3197,6 @@ GameObject:
   m_Component:
   - component: {fileID: 897693858}
   - component: {fileID: 897693857}
-  - component: {fileID: 897693859}
   m_Layer: 0
   m_Name: TimeSystem
   m_TagString: Untagged
@@ -3217,9 +3216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e505982cc0e5546ae0cb2ccf785f67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayDurationInSeconds: 50
-  startTime: 0.3
-  normalizedTime: 0.15
+  dayDuration: 900
+  stopHour: 20
+  currentTime: 0
+  isTimeStopped: 0
 --- !u!4 &897693858
 Transform:
   m_ObjectHideFlags: 0
@@ -3228,28 +3228,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 897693856}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -23.48247, y: -1.61156, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &897693859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 897693856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 744260990c49fff44a81999d1221a6e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sunTransform: {fileID: 1188228594}
-  orbitRadius: 13
-  centerOffset: {x: 0, y: -3}
 --- !u!1001 &925047527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4127,6 +4112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1188228594}
   - component: {fileID: 1188228593}
+  - component: {fileID: 1188228595}
   m_Layer: 0
   m_Name: Sun
   m_TagString: Untagged
@@ -4202,8 +4188,23 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 887978386}
+  m_Father: {fileID: 580327166}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1188228595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188228592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744260990c49fff44a81999d1221a6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sunTransform: {fileID: 0}
+  orbitRadius: 13
+  centerOffset: {x: 0, y: -3}
 --- !u!1 &1188558791 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4973302571607540863, guid: b076c268235cb7348a5d9a036ec254c4, type: 3}
@@ -43122,15 +43123,15 @@ SceneRoots:
   - {fileID: 1434767774}
   - {fileID: 165603716}
   - {fileID: 677910088}
+  - {fileID: 1598952599}
+  - {fileID: 17192901}
   - {fileID: 878500530}
   - {fileID: 5828378108110086306}
   - {fileID: 1082969534}
   - {fileID: 1503148002}
+  - {fileID: 887978386}
   - {fileID: 1042030088}
   - {fileID: 1035358878}
   - {fileID: 580327166}
   - {fileID: 424606611}
   - {fileID: 897693858}
-  - {fileID: 1598952599}
-  - {fileID: 17192901}
-  - {fileID: 887978386}
