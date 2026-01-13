@@ -65,7 +65,7 @@ public class GlobalGameManager : MonoBehaviour
         float fadeDuration = 1.0f;
         float timer = 0f;
 
-        while (timer < fadeDuration)　// 暗転演出
+        while (timer < fadeDuration) // 暗転演出
         {
             timer += Time.deltaTime;
             float alpha = Mathf.Clamp01(timer / fadeDuration);
@@ -90,13 +90,33 @@ public class GlobalGameManager : MonoBehaviour
 
         if (isTheft)
         {
+            // --- 盗難イベント ---
             audioSource.PlayOneShot(breakSound);
-            lastNightLog = "昨晩、ガラスの割れる音がした。\n工房のアイテムが盗まれたようだ...";
+
+            string[] theftLogs = new string[]
+            {
+                "昨晩、ガラスの割れる音がした。気づいたときにはもう遅かったようだ。\n外に出ると何者かが走っていくのが見えた。\n手に何か持っているように見えた。あれは何だろう？\n起きて作業場に行くと、\nあれ...? \n\n工房のアイテムが盗まれている...",
+                "誰かが押し入った形跡がある。\n猫じゃないことは確かだ。\n昔、野球ボールで隣人に家の窓を割った記憶がある。\nでもこんな夜に？ \nそんなことを考えながら作業場に向かう。\n\n保管していたアイテムがいくつか無くなっている...",
+                "夜中に物音がして目が覚めた。何事かと思ったが\n気にせず寝てしまった。\n\n朝日に照らされ、目を覚ました。 \n今日の朝食はパンにしよう \nそんなことを考えながら作業場を眺める。 \n\nよく見ると、\n大事な伝統工芸品が見当たらない...！"
+            };
+
+            int randomIndex = Random.Range(0, theftLogs.Length);
+            lastNightLog = theftLogs[randomIndex];
         }
         else
         {
+            // --- 平穏な夜 ---
             audioSource.PlayOneShot(snoreSound);
-            lastNightLog = "昨晩は静かな夜だった。\n今日も素晴らしい1日にしよう。";
+
+            string[] peacefulLogs = new string[]
+            {
+                "昨晩は静かな夜だった。\nアラームの1分前に目が覚める現象、\nあれにそろそろ名前を付けたい。\n朝日は綺麗だ。\n都会より田舎の方がずっと空気が澄んでる。\n\n今日も素晴らしい1日にしよう。",
+                "ぐっすりと眠ることができた。\n昨日家を掃除していたら、\n前に住んでいた人が忘れて行ったのだろう。\nクロスワードの雑誌を見つけた。\nほとんど解けていないものばかりだ！ \n後で解いてみよう。 \n\nおっとその前に何か作ろう。",
+                "小鳥のさえずりで目が覚めた。\nなんて素敵な朝なんだ。\nただいい日が続いたりすると、何か悪いことが起きるんじゃないかと思ったりする。 \nそういえば昨日腐ったスープ缶を発見した。 \n開けたら最悪だ。\nあんなもの2度と見たくない \n\nさて今日は何を作ろうか？"
+            };
+
+            int randomIndex = Random.Range(0, peacefulLogs.Length);
+            lastNightLog = peacefulLogs[randomIndex];
         }
 
         yield return new WaitForSeconds(5.0f);
@@ -106,7 +126,7 @@ public class GlobalGameManager : MonoBehaviour
         SceneManager.LoadScene("Level1_Village");
     }
 
-    public void OnVillageLoaded(GameObject player, GameObject panel, TextMeshProUGUI logText)
+    public void OnVillageLoaded(GameObject player, GameObject panel, TextMeshProUGUI dateText, TextMeshProUGUI logText)
     {
         if (!isMorning) return;
 
@@ -115,9 +135,16 @@ public class GlobalGameManager : MonoBehaviour
             panel.SetActive(true);
         }
 
+        // 日付を表示
+        if (dateText != null)
+        {
+            dateText.text = $"Day {currentDay}";
+        }
+
+        // ログ本文を表示
         if (logText != null)
         {
-            logText.text = $"【 {currentDay}日目 】\n\n{lastNightLog}";
+            logText.text = lastNightLog;
         }
 
         isMorning = false;

@@ -8,6 +8,7 @@ public class VillageSceneSetup : MonoBehaviour
     [Header("操作する対象")]
     public GameObject player; 
     public GameObject dayLogPanel;
+    public TextMeshProUGUI dayTitleText;
     public TextMeshProUGUI dayLogText;
 
     [Header("演出用")]
@@ -69,7 +70,7 @@ public class VillageSceneSetup : MonoBehaviour
 
         if (GlobalGameManager.Instance != null)
         {
-            GlobalGameManager.Instance.OnVillageLoaded(player, dayLogPanel, dayLogText);
+            GlobalGameManager.Instance.OnVillageLoaded(player, dayLogPanel, dayTitleText, dayLogText);
         }
     }
 }
