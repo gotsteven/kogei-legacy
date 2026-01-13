@@ -99,7 +99,7 @@ public class GlobalGameManager : MonoBehaviour
             lastNightLog = "昨晩は静かな夜だった。\n今日も素晴らしい1日にしよう。";
         }
 
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(5.0f);
 
         isMorning = true;
         GameData.lastExitDirection = "Workshop";

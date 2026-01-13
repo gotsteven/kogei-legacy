@@ -1782,6 +1782,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6899037027154262524, guid: c2a68959300e32f4caceb83e5f23f402, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7518731427633597744, guid: c2a68959300e32f4caceb83e5f23f402, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -5840,7 +5844,7 @@ GameObject:
   - component: {fileID: 1986079096}
   - component: {fileID: 1986079095}
   m_Layer: 0
-  m_Name: BedroomSceneSetup
+  m_Name: BedroomSetup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
