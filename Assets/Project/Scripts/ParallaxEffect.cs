@@ -5,6 +5,10 @@ public class ParallaxEffect : MonoBehaviour
     public GameObject cam;
     public float parallaxEffect;
 
+    [Header("自動スクロール（雲など）")]
+    [Tooltip("0なら動かない。数値を入れれば勝手に動く")]
+    public float autoMoveSpeed = 0f;
+
     private float length;
     private float startPos;
 
@@ -17,6 +21,8 @@ public class ParallaxEffect : MonoBehaviour
 
     void LateUpdate()
     {
+        startPos += autoMoveSpeed * Time.deltaTime;
+
         float temp = (cam.transform.position.x * (1 - parallaxEffect));
         float dist = (cam.transform.position.x * parallaxEffect);
 
