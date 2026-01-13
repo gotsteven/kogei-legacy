@@ -10,9 +10,29 @@ public class WorkshopBedInteraction : MonoBehaviour
     public GameObject FadePanel;
     public TextMeshProUGUI dayText;
 
+    [Header("ヒント表示")]
+    public GameObject interactionHintUI;
+
     [Header("オーディオ")]
     public AudioSource audioSource;
     public AudioClip paperSound;
+
+    private void Start()
+    {
+        if (interactionHintUI != null) interactionHintUI.SetActive(true);
+        if (AnnouncePanelUI != null) AnnouncePanelUI.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (AnnouncePanelUI != null && !AnnouncePanelUI.activeSelf)
+            {
+                OpenSleepPanel();
+            }
+        }
+    }
 
     // ベッドをクリック時の処理
     private void OnMouseDown()
@@ -20,6 +40,19 @@ public class WorkshopBedInteraction : MonoBehaviour
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
         {
             return;
+        }
+
+        if (AnnouncePanelUI != null && !AnnouncePanelUI.activeSelf)
+        {
+            OpenSleepPanel();
+        }
+    }
+
+    private void OpenSleepPanel()
+    {
+        if (interactionHintUI != null)
+        {
+            interactionHintUI.SetActive(false);
         }
 
         if (AnnouncePanelUI != null)
@@ -59,6 +92,11 @@ public class WorkshopBedInteraction : MonoBehaviour
         if (AnnouncePanelUI != null)
         {
             AnnouncePanelUI.SetActive(false);
+        }
+
+        if (interactionHintUI != null)
+        {
+            interactionHintUI.SetActive(true);
         }
     }
 }
