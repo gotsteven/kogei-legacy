@@ -60,6 +60,6 @@ public class TimeManager : MonoBehaviour
     {
         currentTime = 0f;
         isTimeStopped = false;
-        Debug.Log("【TimeManager】起床！新しい一日が始まりました。");
+        Debug.Log($"【TimeManager】リセット完了: Day {GlobalGameManager.Instance.currentDay} 開始");
     }
 }
