@@ -1,9 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameManager : MonoBehaviour
+public class KilnGameManager : MonoBehaviour
 {
     [Header("References")]
     public List<Kiln> kilns = new List<Kiln>();
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
         // "スタート!" 表示
         if (countdownText != null)
         {
-            countdownText.text = "スタート!";
+            countdownText.text = "Start!!";
         }
         yield return new WaitForSeconds(0.5f);
 

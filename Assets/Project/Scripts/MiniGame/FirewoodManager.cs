@@ -67,7 +67,7 @@ public class FirewoodManager : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public void OnPointerDown(PointerEventData eventData)
     {
         // ゲームが開始されていない場合は操作不可
-        GameManager gm = FindFirstObjectByType<GameManager>();
+        KilnGameManager gm = FindFirstObjectByType<KilnGameManager>();
         if (gm == null || !gm.IsGameActive) return;
         if (currentCount <= 0) return;
 
