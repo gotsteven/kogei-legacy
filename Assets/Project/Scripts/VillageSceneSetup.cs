@@ -13,6 +13,10 @@ public class VillageSceneSetup : MonoBehaviour
     [Header("演出用")]
     public Image fadePanel;
 
+    [Header("オーディオ")] 
+    public AudioSource audioSource;
+    public AudioClip paperSound;
+
     void Start()
     {
         if (GlobalGameManager.Instance != null && GlobalGameManager.Instance.isMorning)
@@ -57,6 +61,11 @@ public class VillageSceneSetup : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.5f);
+
+        if (audioSource != null && paperSound != null)
+        {
+            audioSource.PlayOneShot(paperSound);
+        }
 
         if (GlobalGameManager.Instance != null)
         {
