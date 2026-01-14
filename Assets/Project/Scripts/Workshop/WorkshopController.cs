@@ -1,32 +1,49 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
-public class MainSceneController : MonoBehaviour
+public class WorkShopController : MonoBehaviour
 {
-    [SerializeField] private GameObject completionPanel; // 完成通知パネル
-    [SerializeField] private TextMeshProUGUI completionText; // 完成メッセージ
+    [SerializeField] private GameObject completionPanel;
+    [SerializeField] private TextMeshProUGUI completionText;
+    [SerializeField] private Image completionImage;
 
     void Start()
     {
-        // ミニゲームから戻ってきたかチェック
-        if (GameData.isCraftCompleted)
+        if (CraftStorage.TempResultData != null)
         {
-            ShowCompletionNotice();
-
-            // フラグをリセット（重要！）
+            ShowDetailedNotice(CraftStorage.TempResultData);
+        }
+        else if (GameData.isCraftCompleted)
+        {
+            ShowSimpleNotice();
             GameData.isCraftCompleted = false;
         }
     }
 
-    void ShowCompletionNotice()
+    void ShowDetailedNotice(KogeiData data)
     {
         completionPanel.SetActive(true);
-        completionText.text = $"{GameData.completedCraftName}が完成しました！";
+
+        if (completionText != null)
+        {
+            completionText.text = $"{data.workName}が完成しました！";
+        }
+
+        if (completionImage != null && data.artworkImage != null)
+        {
+            completionImage.sprite = data.artworkImage;
+            completionImage.preserveAspect = true;
+            completionImage.gameObject.SetActive(true);
+        }
     }
 
-    // ボタンで通知を閉じる
-    public void CloseNotice()
+    void ShowSimpleNotice()
     {
-        completionPanel.SetActive(false);
+        completionPanel.SetActive(true);
+        if (completionText != null)
+        {
+            completionText.text = $"{GameData.completedCraftName}が完成しました！";
+        }
     }
 }
