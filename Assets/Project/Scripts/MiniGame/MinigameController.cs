@@ -39,6 +39,10 @@ public class MinigameController : MonoBehaviour
         itemScript.uniqueID = Guid.NewGuid().ToString();
         itemScript.createdAt = DateTime.Now.ToString();
 
+        GameData.isCraftCompleted = true;
+        GameData.completedCraftName = targetKogeiData.workName;
+
+        Debug.Log($"Craft Completed: {targetKogeiData.workName}");
         // 倉庫へ登録
         CraftStorage.Register(newCraft);
         CraftStorage.TempResultData = targetKogeiData;
@@ -47,3 +51,4 @@ public class MinigameController : MonoBehaviour
         SceneManager.LoadScene("WorkShop");
     }
 }
+
