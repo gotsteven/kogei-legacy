@@ -2486,7 +2486,7 @@ MonoBehaviour:
   - {fileID: 42142384}
   - {fileID: 1370176075}
   - {fileID: 1413500476}
-  targetDisplaySize: 2
+  targetDisplaySize: 4
 --- !u!4 &1533976557
 Transform:
   m_ObjectHideFlags: 0
