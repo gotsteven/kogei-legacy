@@ -40,6 +40,11 @@ public class GlobalGameManager : MonoBehaviour
     {
         Debug.Log("盗難システムを開始します");
 
+        if (TimeManager.Instance != null)
+        {
+            TimeManager.Instance.isTimeStopped = true;
+        }
+
         currentDay++;
         Debug.Log("Day " + currentDay);
 
@@ -120,6 +125,11 @@ public class GlobalGameManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(5.0f);
+
+        if (TimeManager.Instance != null)
+        {
+            TimeManager.Instance.Sleep();
+        }
 
         isMorning = true;
         GameData.lastExitDirection = "Workshop";
