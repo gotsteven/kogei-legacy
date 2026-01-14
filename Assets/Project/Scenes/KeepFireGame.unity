@@ -19229,7 +19229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad8f3e42293ec0944a129cebb83f17e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  craftName: "\u6709\u7530\u713C"
 --- !u!4 &1496573399
 Transform:
   m_ObjectHideFlags: 0
