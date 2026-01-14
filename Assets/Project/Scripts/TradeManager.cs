@@ -131,7 +131,7 @@ public class TradeManager : MonoBehaviour
             }
             else
             {
-                dialogueText.text = "じゃあ今回は縁がなかったということで...（交渉失敗）";
+                dialogueText.text = "じゃあ今回は縁がなかったということで...";
                 buttonGroup.SetActive(false);
             }
         }
