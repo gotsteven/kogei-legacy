@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI; 
 
 public class MenuManager : MonoBehaviour
 {
@@ -9,6 +10,14 @@ public class MenuManager : MonoBehaviour
         if (menuPanel != null)
         {
             menuPanel.SetActive(false);
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ToggleMenu();
         }
     }
 
