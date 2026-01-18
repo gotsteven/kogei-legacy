@@ -5,71 +5,99 @@ public class PlayerInteractive : MonoBehaviour
 {
     public Inventory inventory;
 
+    [Header("エフェクト設定")]
+    public GameObject lootEffectPrefab;
+
+    [Header("サウンド設定")]
+    public AudioClip collectSound;
+    private AudioSource audioSource;
+
     private List<ResourceNode> reachableResources = new List<ResourceNode>();
 
     [Tooltip("採集のクールダウン時間（秒）")]
     public float collectInterval = 0.5f;
     private float nextCollectTime = 0f;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         if (Input.GetKey(KeyCode.F) && Time.time >= nextCollectTime)
         {
             nextCollectTime = Time.time + collectInterval;
-
             TryCollectResource();
         }
     }
 
     private void TryCollectResource()
     {
+        reachableResources.RemoveAll(item => item == null);
+
         if (reachableResources.Count > 0)
         {
-            ResourceNode resource = reachableResources[0];
+            // 近い順にソート
+            reachableResources.Sort((a, b) =>
+                Vector2.Distance(transform.position, a.transform.position)
+                .CompareTo(Vector2.Distance(transform.position, b.transform.position)));
 
-            if (resource == null)
+            foreach (ResourceNode resource in reachableResources)
             {
-                reachableResources.RemoveAt(0);
-                return;
-            }
-
-            if (inventory != null && resource.itemToGive != null)
-            {
-                bool addedSuccessfully = inventory.AddItem(resource.itemToGive, resource.quantity);
-
-                if (addedSuccessfully)
+                if (resource.itemToGive != null)
                 {
-                    // reachableResources.Remove(resource); 
-                }
-                else
-                {
-                    Debug.Log("インベントリが一杯です！");
+                    // ResourceNode側の音（叩く音など）を再生
+                    if (audioSource != null && resource.popSound != null)
+                    {
+                        audioSource.pitch = Random.Range(0.9f, 1.1f);
+                        audioSource.PlayOneShot(resource.popSound);
+                    }
+
+                    SpawnLootEffect(resource);
                 }
             }
+        }
+    }
+
+    private void SpawnLootEffect(ResourceNode resource)
+    {
+        if (lootEffectPrefab == null) return;
+
+        Sprite itemSprite = resource.itemToGive.icon;
+        GameObject effectObj = Instantiate(lootEffectPrefab, resource.transform.position, Quaternion.identity);
+
+        LootEffect effectScript = effectObj.GetComponent<LootEffect>();
+        if (effectScript != null)
+        {
+            effectScript.Initialize(
+                itemSprite,
+                resource.transform.position,
+                this.transform,
+                inventory,
+                resource.itemToGive,
+                resource.quantity,
+                audioSource,
+                collectSound
+            );
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         ResourceNode resource = other.GetComponent<ResourceNode>();
-
-        if (resource != null)
+        if (resource != null && !reachableResources.Contains(resource))
         {
-            if (!reachableResources.Contains(resource))
-            {
-                reachableResources.Add(resource);
-                Debug.Log($"採集可能範囲に入った: {resource.gameObject.name}");
-            }
+            reachableResources.Add(resource);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         ResourceNode resource = other.GetComponent<ResourceNode>();
-
         if (resource != null && reachableResources.Contains(resource))
         {
             reachableResources.Remove(resource);
-            Debug.Log($"採集可能範囲から出た: {resource.gameObject.name}");
         }
     }
 }
