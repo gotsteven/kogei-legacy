@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Project/Scenes/Test/kakeru/VisualDictionary.unity
     guid: b3c74c90df25c6944b356d4250dc74e0
+  - enabled: 1
+    path: Assets/Project/Scenes/SellShop.unity
+    guid: cc52792a28aaffa4faabca25047c8aad
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
