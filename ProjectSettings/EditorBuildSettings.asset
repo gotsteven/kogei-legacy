@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/TItle.unity
     guid: 6fbac9e87b6763e409fc02a3c87b0b9b
   - enabled: 1
-    path: Assets/Project/Scenes/Test/kakeru/Workshop.unity
+    path: Assets/Project/Scenes/Workshop.unity
     guid: 193762db19647d1428422687215a3b24
   - enabled: 1
     path: Assets/Project/Scenes/Workshop_Bedroom.unity
@@ -30,7 +30,10 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/Test/Sora/DemoEnd.unity
     guid: 2c89b48d0623aec449084f5eb621041c
   - enabled: 1
-    path: Assets/Project/Scenes/Test/kakeru/SellShop.unity
+    path: Assets/Project/Scenes/Test/kakeru/VisualDictionary.unity
+    guid: b3c74c90df25c6944b356d4250dc74e0
+  - enabled: 1
+    path: Assets/Project/Scenes/SellShop.unity
     guid: cc52792a28aaffa4faabca25047c8aad
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
