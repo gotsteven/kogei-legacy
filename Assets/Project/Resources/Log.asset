@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: New Item
   icon: {fileID: 109800182, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
-  description: "\u305F\u3060\u306E\u6728\u3067\u3042\u308B"
+  description: "\u6728"
   maxStack: 99
